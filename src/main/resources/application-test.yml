@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/insightNews
+    username: root
+    password: '030530'
+  redis:
+    cluster:
+      nodes:
+         - 116.62.221.163:6379
+         - 116.62.221.163:6380
+         - 116.62.221.163:6381
+         - 116.62.221.163:6382
+         - 116.62.221.163:6383
+         - 116.62.221.163:6384
+    password: '030530'
+    timeout: 5000  # 设置为 5 秒
+    lettuce:
+      pool:
+        max-active: 8  #最大连接
+        max-idle: 8   #最大空闲连接
+        min-idle: 0   #最小空闲连接
+        max-wait: 100ms #连接等待时间
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sosd.insightnews.dao.mapper.ScienceTopicMapper">
+
+    <resultMap id="BaseResultMap" type="com.sosd.insightnews.dao.entity.ScienceTopic">
+        <id property="id" column="id" />
+        <result property="title" column="title" />
+        <result property="description" column="description" />
+        <result property="category" column="category" />
+        <result property="publishTime" column="publish_time" />
+        <result property="topicCover" column="topic_cover" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,title,description,
+        category,publish_time,topic_cover
+    </sql>
+
+    <select id="selectBatchTopics" resultMap="BaseResultMap" parameterType="java.util.List">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM ScienceTopic
+        WHERE id IN
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        ORDER BY FIELD(id,
+        <foreach collection="list" item="id" separator=",">
+            #{id}
+        </foreach>
+        )
+    </select>
+</mapper>
+
